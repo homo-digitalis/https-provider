@@ -7,13 +7,18 @@ export class HTTPSProvider {
 
     private httpsOptions: any
 
-    public constructor(certificateName: string, domains: string[]) {
+    public constructor(certificateName: string, domains?: string[]) {
         this.certificateName = certificateName
         this.statement =
             `sudo certbot certonly --standalone --preferred-challenges http --cert-name ${this.certificateName}`
 
-        for (const domain of domains) {
-            this.statement = `${this.statement} -d ${domain}`
+        if (domains === undefined) {
+            this.statement = `${this.statement} -d <your-domain>`
+        } else {
+
+            for (const domain of domains) {
+                this.statement = `${this.statement} -d ${domain}`
+            }
         }
     }
 
@@ -21,10 +26,10 @@ export class HTTPSProvider {
         return this.statement
     }
 
-    public provideHTTPSOptions(certificateName: string): any {
+    public provideHTTPSOptions(): any {
         this.httpsOptions = {
-            cert: fs.readFileSync(`/etc/letsencrypt/live/${certificateName}/cert.pem`),
-            key: fs.readFileSync(`/etc/letsencrypt/live/${certificateName}/privkey.pem`),
+            cert: fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/cert.pem`),
+            key: fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/privkey.pem`),
         }
 
         return this.httpsOptions

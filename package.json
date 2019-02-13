@@ -1,6 +1,6 @@
 {
   "name": "https-provider",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Provides HTTPS Credentials.",
   "main": "./dist/index.js",
   "typings": "./dist/index.js",
