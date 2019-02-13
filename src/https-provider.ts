@@ -2,8 +2,8 @@ import * as fs from "fs"
 
 export class HTTPSProvider {
 
-    private certificateName: string
-    private statement: string
+    private readonly certificateName: string
+    private readonly statement: string
 
     private httpsOptions: any
 
