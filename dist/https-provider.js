@@ -27,3 +27,6 @@ class HTTPSProvider {
     }
 }
 exports.HTTPSProvider = HTTPSProvider;
+const httpsProvider = new HTTPSProvider(process.argv[2]);
+// tslint:disable-next-line:no-console
+console.log(httpsProvider.provideStatement());
