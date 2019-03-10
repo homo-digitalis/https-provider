@@ -1,10 +1,11 @@
 {
   "name": "https-provider",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Provides HTTPS Credentials.",
   "main": "./dist/index.js",
   "typings": "./dist/index.js",
   "scripts": {
+    "generate-public-key-from-cert.pem": "openssl rsa -in privkey.pem -pubout > key.pub",
     "test": "jest",
     "git-init": "rm -rf .git && git init && git config --local credential.helper \"\" && git config --local user.email \"homo-digitalis@gmx.de\" && git config --local user.name \"homo-digitalis\"",
     "test:cov": "jest --coverage",

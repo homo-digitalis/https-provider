@@ -4,5 +4,6 @@ export declare class HTTPSProvider {
     private httpsOptions;
     constructor(certificateName: string, domains?: string[]);
     provideStatement(): string;
+    getPublicKey(): any;
     provideHTTPSOptions(): any;
 }

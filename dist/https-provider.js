@@ -18,6 +18,9 @@ class HTTPSProvider {
     provideStatement() {
         return this.statement;
     }
+    getPublicKey() {
+        return fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/key.pub`);
+    }
     provideHTTPSOptions() {
         this.httpsOptions = {
             cert: fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/cert.pem`),

@@ -26,6 +26,11 @@ export class HTTPSProvider {
         return this.statement
     }
 
+    public getPublicKey(): any {
+        // if there is no file like this try "openssl rsa -in privkey.pem -pubout > key.pub"
+        return fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/key.pub`)
+    }
+
     public provideHTTPSOptions(): any {
         this.httpsOptions = {
             cert: fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/cert.pem`),
