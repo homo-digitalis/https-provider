@@ -34,7 +34,7 @@ export class HTTPSProvider {
     public provideHTTPSOptions(): any {
         this.httpsOptions = {
             cert: fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/cert.pem`),
-            key: fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/privkey.pem`),
+            key: fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/fullchain.pem`),
         }
 
         return this.httpsOptions

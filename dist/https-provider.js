@@ -19,12 +19,13 @@ class HTTPSProvider {
         return this.statement;
     }
     getPublicKey() {
+        // if there is no file like this try "openssl rsa -in privkey.pem -pubout > key.pub"
         return fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/key.pub`);
     }
     provideHTTPSOptions() {
         this.httpsOptions = {
             cert: fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/cert.pem`),
-            key: fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/privkey.pem`),
+            key: fs.readFileSync(`/etc/letsencrypt/live/${this.certificateName}/fullchain.pem`),
         };
         return this.httpsOptions;
     }
